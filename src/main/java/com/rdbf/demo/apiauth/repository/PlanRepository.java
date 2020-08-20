@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import com.rdbf.demo.apiauth.domain.People;
-
+import java.util.List;
 
 @Mapper
 public interface PlanRepository {
@@ -15,7 +15,9 @@ public interface PlanRepository {
     @Insert("INSERT INTO plans(title,start_date,end_date,place,label,body) VALUES (#{title},#{start_date},#{end_date},#{place},${label},${body})")
     void createPlan(Plan plan);
 
+    @Select("SELECT * FROM plans WHERE login_id = #{loginId}")
+    List<Plan> findAllOwnPlan(String loginId);
 
-
-
+    @Select("SELECT * FROM plans WHERE org_id = #{orgId}")
+    List<Plan> findAllOwnOrganization(String orgId);
 }

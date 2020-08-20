@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 
 public class Plan {
     private String planId;
-    private String personName;
+    private People people;
     private String title;
     private SimpleDateFormat startDate;
     private SimpleDateFormat endDate;
@@ -13,9 +13,9 @@ public class Plan {
     private String body;
     private Boolean share;
 
-    public Plan(String planId, String personName, String title, SimpleDateFormat startDate,SimpleDateFormat endDate,String place,String label,String body,Boolean share) {
+    public Plan(String planId, People people, String title, SimpleDateFormat startDate,SimpleDateFormat endDate,String place,String label,String body,Boolean share) {
         this.planId = planId;
-        this.personName = personName;
+        this.people = people;
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -30,10 +30,8 @@ public class Plan {
         this.planId = planId;
     }
 
-    public String getPersonName() {
-        return personName;
-    }
-    public void setPersonName(String personName) { this.personName = personName; }
+    public People getPeople() { return this.people; }
+    public void setPersonName(People people) { this.people = people; }
 
     public String getTitle() {
         return title;
