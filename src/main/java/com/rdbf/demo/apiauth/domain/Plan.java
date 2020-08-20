@@ -8,16 +8,18 @@ public class Plan {
     private String title;
     private SimpleDateFormat startDate;
     private SimpleDateFormat endDate;
+    private String place;
     private String label;
     private String body;
     private Boolean share;
 
-    public Plan(String planId, String personName, String title, SimpleDateFormat startDate,SimpleDateFormat endDate,String label,String body,Boolean share) {
+    public Plan(String planId, String personName, String title, SimpleDateFormat startDate,SimpleDateFormat endDate,String place,String label,String body,Boolean share) {
         this.planId = planId;
         this.personName = personName;
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.place = place;
         this.label = label;
         this.body = body;
         this.share = share;
@@ -52,6 +54,11 @@ public class Plan {
     }
     public void setEndDate(SimpleDateFormat endDate) {
         this.endDate = endDate;
+    }
+
+    public String getPlace() { return place; }
+    public void setPlace(String Place) {
+        this.place = place;
     }
 
     public String getLabel() { return label; }
