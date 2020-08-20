@@ -27,7 +27,7 @@ public class Plan {
 //    }
 
     private int planId;
-    private String personName;
+    private String loginId;
     private String title;
     private Date startDate;
     private Date endDate;
@@ -36,9 +36,9 @@ public class Plan {
     private Boolean share;
     private String place;
 
-    public Plan(int planId, String personName, String title, Date startDate,Date endDate,String label,String body,Boolean share,String place) {
+    public Plan(int planId, String loginId, String title, Date startDate,Date endDate,String label,String body,Boolean share,String place) {
         this.planId = planId;
-        this.personName = personName;
+        this.loginId = loginId;
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -55,12 +55,10 @@ public class Plan {
 
 //    public People getPeople() { return this.people; }
 //    public void setPersonName(People people) { this.people = people; }
-    public String getPersonName() {
-    return personName;
+    public String getLoginId() {
+    return loginId;
 }
-    public void setPersonName(String personName) {
-        this.personName = personName;
-    }
+    public void setLoginId(String loginId) { this.loginId = loginId; }
 
     public String getTitle() {
         return title;
