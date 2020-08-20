@@ -36,9 +36,9 @@ public class PlanController {
     @GetMapping("/plan")
     List<Plan> allOwnPlan() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails principal = (UserDetails) auth.getPrincipal();
+        Object principal = auth.getPrincipal();
         LOGGER.info("プリンシパルの中身は？:::::" +principal.toString());
-        return planRepository.findAllOwnPlan(principal.getUsername());
+        return planRepository.findAllOwnPlan(principal.toString());
     }
 
     @GetMapping("/org-plan")

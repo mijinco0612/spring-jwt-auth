@@ -9,15 +9,15 @@ import java.util.List;
 
 @Mapper
 public interface PlanRepository {
-    @Select("SELECT title, start_date, end_date, place, body, label FROM plans WHERE login_id = #{loginId}")
+    @Select("SELECT title, start_date, end_date, place, body, label FROM plans WHERE person_name = #{loginId}")
     People findByLoginId(String loginId);
 
     @Insert("INSERT INTO plans(title,start_date,end_date,place,label,body) VALUES (#{title},#{start_date},#{end_date},#{place},${label},${body})")
     void createPlan(Plan plan);
 
-    @Select("SELECT * FROM plans WHERE login_id = #{loginId}")
+    @Select("SELECT plan_id,person_name,title, start_date, end_date, label,body,private,place FROM plans WHERE person_name = #{loginId}")
     List<Plan> findAllOwnPlan(String loginId);
 
-    @Select("SELECT * FROM plans WHERE org_id = #{orgId}")
-    List<Plan> findAllOwnOrganization(String orgId);
+//    @Select("SELECT * FROM plans WHERE org_id = #{orgId}")
+//    List<Plan> findAllOwnOrganization(String orgId);
 }
