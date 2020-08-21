@@ -99,7 +99,7 @@ CREATE DATABASE `app_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_
 table:peoples
 ```DDL
 CREATE TABLE `peoples` (
-  `login_name` text NOT NULL,
+  `login_id` text NOT NULL,
   `people_id` int NOT NULL AUTO_INCREMENT,
   `password` text NOT NULL,
   PRIMARY KEY (`people_id`),
