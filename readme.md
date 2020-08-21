@@ -94,7 +94,7 @@ curl --location --request POST 'localhost:8080/user/signup' \
 
 schema:app_db
 ```DDL
-CREATE DATABASE `app_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */
+CREATE DATABASE `app_db` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */
 ```
 table:peoples
 ```DDL
@@ -103,6 +103,6 @@ CREATE TABLE `peoples` (
   `people_id` int NOT NULL AUTO_INCREMENT,
   `password` text NOT NULL,
   PRIMARY KEY (`people_id`),
-  UNIQUE KEY `peoples_login_name_uindex` (`login_name`(100))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='アプリケーション利用者情報を格納するテーブル'
+  UNIQUE KEY `peoples_login_name_uindex` (`login_id`(100))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci COMMENT='アプリケーション利用者情報を格納するテーブル'
 ```
