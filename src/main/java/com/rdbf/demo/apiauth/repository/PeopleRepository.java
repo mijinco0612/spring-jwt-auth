@@ -17,5 +17,5 @@ public interface PeopleRepository {
     void createAccount(People people);
 
     @Select("SELECT people_id, login_id, password,org_id FROM peoples WHERE org_id = #{orgId}")
-    List<People> findbyOrgnizationId(People people);
+    List<People> findbyOrgnizationId(int orgId);
 }

@@ -13,10 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
@@ -44,13 +41,9 @@ public class PlanController {
         return planRepository.findAllOwnPlan(principal.toString());
     }
 
-    @GetMapping("/org-plan")
-    List<Plan> allOrgPlan() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = auth.getPrincipal();
-        LOGGER.info("プリンシパルの中身は？:::::" +principal.toString());
-
-        return planService.findOrg(principal.toString());
+    @PostMapping("/org-plan/{orgId}")
+    List<Plan> allOrgPlan(@PathVariable int orgId)  {
+        return planService.findOrgPlan(orgId);
     }
 
     @PostMapping("/plan")

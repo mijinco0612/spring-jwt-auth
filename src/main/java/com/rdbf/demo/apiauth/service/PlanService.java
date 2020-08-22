@@ -48,18 +48,14 @@ public class PlanService {
             return planRepository.findByLoginId(loginId);
         }
 
-        public List<Plan> findOrg(String loginId){
-            People people = peopleRepository.findByLoginId(loginId);
-            List<People> memberList =  peopleRepository.findbyOrgnizationId(people);
-            ArrayList<String> loginIdList = new ArrayList<String>();
-            String idList = "";
+        public List<Plan> findOrgPlan(int orgId){
+            List<People> memberList =  peopleRepository.findbyOrgnizationId(orgId);
+            ArrayList<Plan> orgPlanList = new ArrayList<Plan>();
             for(People peopleTemp : memberList){
-                loginIdList.add(peopleTemp.getLoginId());
-                String loginList = "'" + peopleTemp.getLoginId() + "'";
-                idList =  idList +"," + loginList;
+                orgPlanList.addAll(planRepository.findAllOwnPlan(peopleTemp.getLoginId()));
             }
-            LOGGER.info("idListの中身は？:::::" +idList.substring(1,idList.length()));
-            return planRepository.findByLoginIdList(idList.substring(1,idList.length()));
+            LOGGER.info("idListの中身は？:::::" +orgPlanList);
+            return orgPlanList;
         }
 }
 
