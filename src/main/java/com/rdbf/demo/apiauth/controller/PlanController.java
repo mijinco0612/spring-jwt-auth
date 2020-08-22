@@ -1,22 +1,18 @@
 package com.rdbf.demo.apiauth.controller;
 
-import com.rdbf.demo.apiauth.controller.form.UserForm;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.rdbf.demo.apiauth.domain.Plan;
 import com.rdbf.demo.apiauth.repository.PlanRepository;
 import com.rdbf.demo.apiauth.service.PlanService;
-import com.rdbf.demo.apiauth.service.SampleService;
-import com.rdbf.demo.apiauth.support.SecurityConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -46,9 +42,15 @@ public class PlanController {
         return planService.findOrgPlan(orgId);
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     @PostMapping("/plan")
     void newPlan(@RequestBody Plan newPlan) {
         planRepository.createPlan(newPlan);
     }
 
+    @DeleteMapping("/plan")
+    void deletePlan(@RequestBody Plan deleteTargetPlan) {
+        planRepository.deletePlan(deleteTargetPlan);
+    }
 }

@@ -1,12 +1,12 @@
 package com.rdbf.demo.apiauth.repository;
 
+import com.rdbf.demo.apiauth.domain.People;
 import com.rdbf.demo.apiauth.domain.Plan;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import com.rdbf.demo.apiauth.domain.People;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
@@ -39,4 +39,7 @@ public interface PlanRepository {
 
     @Select("SELECT plans.plan_id,plans.login_id,plans.title, plans.start_date, plans.end_date, plans.label,plans.body,plans.private,plans.place FROM plans WHERE login_id IN (#{loginIdList})")
     List<Plan> findByLoginIdList(String loginIdList);
+
+    @Delete("DELETE FROM plans WHERE plan_id = #{planId}")
+    void deletePlan(Plan deleteTargetPlan);
 }

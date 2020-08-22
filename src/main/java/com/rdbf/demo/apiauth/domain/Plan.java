@@ -1,42 +1,25 @@
 package com.rdbf.demo.apiauth.domain;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
 
 public class Plan {
-//    private String planId;
-//    private People people;
-//    private String title;
-//    private SimpleDateFormat startDate;
-//    private SimpleDateFormat endDate;
-//    private String place;
-//    private String label;
-//    private String body;
-//    private Boolean share;
-//
-//    public Plan(String planId, People people, String title, SimpleDateFormat startDate,SimpleDateFormat endDate,String place,String label,String body,Boolean share) {
-//        this.planId = planId;
-//        this.people = people;
-//        this.title = title;
-//        this.startDate = startDate;
-//        this.endDate = endDate;
-//        this.place = place;
-//        this.label = label;
-//        this.body = body;
-//        this.share = share;
-//    }
 
-    private int planId;
+    private Integer planId;
     private String loginId;
     private String title;
-    private Date startDate;
-    private Date endDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime startDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime endDate;
     private String label;
     private String body;
     private Boolean share;
     private String place;
 
-    public Plan(int planId, String loginId, String title, Date startDate,Date endDate,String label,String body,Boolean share,String place) {
+    public Plan(Integer planId, String loginId, String title, LocalDateTime startDate, LocalDateTime endDate, String label, String body, Boolean share, String place) {
+
         this.planId = planId;
         this.loginId = loginId;
         this.title = title;
@@ -48,56 +31,89 @@ public class Plan {
         this.share = share;
     }
 
-    public int getPlanId() { return planId; }
-    public void setPlanId(int planId) {
+    public Plan(String loginId, String title, LocalDateTime startDate, LocalDateTime endDate, String label, String body, Boolean share, String place) {
+        this.loginId = loginId;
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.label = label;
+        this.body = body;
+        this.share = share;
+        this.place = place;
+    }
+
+    public Plan() {
+    }
+
+    public Integer getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(Integer planId) {
         this.planId = planId;
     }
 
-//    public People getPeople() { return this.people; }
-//    public void setPersonName(People people) { this.people = people; }
     public String getLoginId() {
-    return loginId;
-}
-    public void setLoginId(String loginId) { this.loginId = loginId; }
+        return loginId;
+    }
+
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
 
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
-    public void setStartDate(Date startDate) {
+
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
-    public void setEndDate(Date endDate) {
+
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
-    public String getPlace() { return place; }
-    public void setPlace(String Place) {
-        this.place = place;
+    public String getLabel() {
+        return label;
     }
 
-    public String getLabel() { return label; }
-    public void setLabel(String Label) {
+    public void setLabel(String label) {
         this.label = label;
     }
 
-    public String getBody(){ return body;}
-    public void setBody(String body){ this.body = body;}
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
 
     public Boolean getShare() {
         return share;
     }
-    public void setShare(Boolean share) { this.share = share; }
 
+    public void setShare(Boolean share) {
+        this.share = share;
+    }
 
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
 }
