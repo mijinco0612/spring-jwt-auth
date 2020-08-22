@@ -2,23 +2,23 @@ package com.rdbf.demo.apiauth.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Plan {
 
     private Integer planId;
     private String loginId;
     private String title;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime startDate;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime endDate;
+    @JsonFormat(pattern = "YYYY-MM-DD HH:MM:SS")
+    private Date startDate;
+    @JsonFormat(pattern = "YYYY-MM-DD HH:MM:SS")
+    private Date endDate;
     private String label;
     private String body;
     private Boolean share;
     private String place;
 
-    public Plan(Integer planId, String loginId, String title, LocalDateTime startDate, LocalDateTime endDate, String label, String body, Boolean share, String place) {
+    public Plan(Integer planId, String loginId, String title, Date startDate, Date endDate, String label, String body, Boolean share, String place) {
 
         this.planId = planId;
         this.loginId = loginId;
@@ -31,7 +31,7 @@ public class Plan {
         this.share = share;
     }
 
-    public Plan(String loginId, String title, LocalDateTime startDate, LocalDateTime endDate, String label, String body, Boolean share, String place) {
+    public Plan(String loginId, String title, Date startDate, Date endDate, String label, String body, Boolean share, String place) {
         this.loginId = loginId;
         this.title = title;
         this.startDate = startDate;
@@ -69,19 +69,19 @@ public class Plan {
         this.title = title;
     }
 
-    public LocalDateTime getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
