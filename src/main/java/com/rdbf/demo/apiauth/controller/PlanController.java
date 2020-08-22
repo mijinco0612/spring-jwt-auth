@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -25,12 +26,14 @@ import java.util.List;
 public class PlanController {
 
     private final PlanRepository planRepository;
+    private final PlanService planService;
     private static final Logger LOGGER = LoggerFactory.getLogger(PlanController.class);
 
     @Autowired
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    PlanController(PlanRepository planRepository){
+    PlanController(PlanRepository planRepository,PlanService planService){
         this.planRepository = planRepository;
+        this.planService = planService;
     }
 
     @GetMapping("/plan")
@@ -44,10 +47,10 @@ public class PlanController {
     @GetMapping("/org-plan")
     List<Plan> allOrgPlan() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails principal = (UserDetails) auth.getPrincipal();
+        Object principal = auth.getPrincipal();
         LOGGER.info("プリンシパルの中身は？:::::" +principal.toString());
 
-        return planRepository.findAllOwnPlan(principal.getUsername());
+        return planService.findOrg(principal.toString());
     }
 
     @PostMapping("/plan")

@@ -13,17 +13,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.context.SecurityContextHolder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PlanService {
 
         private static final Logger LOGGER = LoggerFactory.getLogger(PlanService.class);
         private final PlanRepository planRepository;
+        private final PeopleRepository peopleRepository;
+
 
         @Autowired
         @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-        public PlanService(PlanRepository planRepository) {
+        public PlanService(PlanRepository planRepository,PeopleRepository peopleRepository) {
             this.planRepository = planRepository;
+            this.peopleRepository = peopleRepository;
         }
 
         public void createPlan(String title, SimpleDateFormat start_date,SimpleDateFormat end_date,String place,String label,String body,Boolean share) {
@@ -34,16 +39,28 @@ public class PlanService {
 
             LOGGER.info("プリンシパルの中身は？:::::" +principal.toString());
 
-            //Plan plan = new Plan(title,start_date,end_date,place,label,body,share);
-            //planRepository.createPlan(plan);
+//            Plan plan = new Plan(title,start_date,end_date,label,body,share,place);
+//            planRepository.createPlan(plan);
 
         }
 
         public People getUser(String loginId) {
-
             return planRepository.findByLoginId(loginId);
         }
 
+        public List<Plan> findOrg(String loginId){
+            People people = peopleRepository.findByLoginId(loginId);
+            List<People> memberList =  peopleRepository.findbyOrgnizationId(people);
+            ArrayList<String> loginIdList = new ArrayList<String>();
+            String idList = "";
+            for(People peopleTemp : memberList){
+                loginIdList.add(peopleTemp.getLoginId());
+                String loginList = "'" + peopleTemp.getLoginId() + "'";
+                idList =  idList +"," + loginList;
+            }
+            LOGGER.info("idListの中身は？:::::" +idList.substring(1,idList.length()));
+            return planRepository.findByLoginIdList(idList.substring(1,idList.length()));
+        }
 }
 
 
