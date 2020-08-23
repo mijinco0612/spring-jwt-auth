@@ -42,10 +42,8 @@ public class PlanController {
         return planService.findOrgPlan(orgId);
     }
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     @PostMapping("/plan")
-    void newPlan(@RequestBody Plan newPlan) {
+    void newPlan(@RequestBody  @DateTimeFormat(pattern = "YYYY-MM-DD HH:MM:SS") Plan newPlan) {
         planRepository.createPlan(newPlan);
     }
 

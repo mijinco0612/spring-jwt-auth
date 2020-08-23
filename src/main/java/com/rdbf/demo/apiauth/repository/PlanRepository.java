@@ -14,7 +14,8 @@ public interface PlanRepository {
     @Select("SELECT title, start_date, end_date, place, body, label FROM plans WHERE login_id= #{loginId}")
     People findByLoginId(String loginId);
 
-    @Insert("INSERT INTO plans(title,start_date,end_date,place,label,body) VALUES (#{title},#{start_date},#{end_date},#{place},${label},${body})")
+    @Insert("INSERT INTO plans(login_id,title,start_date,end_date,label,body,share,place) " +
+                        "VALUES(#{loginId},#{title},#{startDate},#{endDate},#{label},#{body},#{share},#{place})")
     void createPlan(Plan plan);
 
     @Select("SELECT plan_id,login_id,title, start_date, end_date, label,body,private,place FROM plans WHERE login_id = #{loginId}")
